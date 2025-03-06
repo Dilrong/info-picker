@@ -32,14 +32,32 @@ async function getChannels(): Promise<Channel[]> {
   return data || [];
 }
 
+async function fetchSubscriptions(): Promise<string[]> {
+  return [];
+}
+
 export default async function Home() {
   const initialAnnouncements = await getInitialAnnouncements();
   const channels = await getChannels();
+  const subscribedChannelIds = await fetchSubscriptions();
+
+  const filteredInitialAnnouncements =
+    subscribedChannelIds.length > 0
+      ? initialAnnouncements.filter((ann) =>
+          subscribedChannelIds.includes(ann.source_channel_id || "")
+        )
+      : initialAnnouncements;
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
-      <main className="flex-grow container mx-auto max-w-5xl px-4 py-6">
-        <Feed initialAnnouncements={initialAnnouncements} channels={channels} />
+      <main className="flex-grow container mx-auto max-w-7xl px-4 py-6">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Info Picker Feed
+        </h1>
+        <Feed
+          initialAnnouncements={filteredInitialAnnouncements}
+          channels={channels}
+        />
       </main>
     </div>
   );

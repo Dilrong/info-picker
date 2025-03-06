@@ -4,7 +4,8 @@ import "./globals.css";
 
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
-import { ThemeProvider } from "@/components/common/theme-provider";
+import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
           <main className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
             <Header />
             {children}
+            <Toaster />
           </main>
           <Footer />
         </ThemeProvider>

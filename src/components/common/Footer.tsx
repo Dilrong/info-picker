@@ -1,10 +1,12 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Footer() {
   return (
     <Card className="w-full py-4 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 text-xs flex flex-col gap-2 justify-center items-center">
+      <ModeToggle />
       <span>© 2025 Dilrong. All rights reserved.</span>
       <div className="flex gap-4">
         <a
