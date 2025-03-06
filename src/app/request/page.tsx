@@ -34,18 +34,21 @@ export default function ChannelRequestPage() {
   const [channelName, setChannelName] = useState("");
   const [channelUrl, setChannelUrl] = useState("");
   const [requests, setRequests] = useState<ChannelRequest[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [chartData, setChartData] = useState<any[]>([]);
 
   useEffect(() => {
     fetchRequests();
-  }, []);
+  }, [fetchRequests]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchRequests() {
     const { data } = await supabase
       .from("channel_requests")
       .select("*")
       .order("created_at", { ascending: false });
     setRequests(data || []);
+    console.log(requests);
     updateChartData(data || []);
   }
 
