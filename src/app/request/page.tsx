@@ -183,3 +183,5 @@ export default function ChannelRequestPage() {
     </div>
   );
 }
+
+export const revalidate = 0;
